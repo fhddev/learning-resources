@@ -1,0 +1,13 @@
+Install template in aspnet core project instructions:
+
+1- Create Views/Shared/_Layout.cshtml file.
+2- Put assets files in wwwroot folder.
+3- In Startup.cs -> Configure method -> before UseRouting write app.UseStaticFiles();
+4- Edit Endpoint method to use (endpoint.MapControllerRoute )
+5- In ConfigureServices method add -> services.AddControllersWithViews();
+6- Add HomeController in Controllers folder.
+7- Right click on the action name and select (Add View) to add views files.
+8- You can put in the view file (Layout) directive or Razor View Start file in the views root directory.
+9- Update static files links:
+	- To access the server root write (~/) before each link.
+10- Add @RenderBody()

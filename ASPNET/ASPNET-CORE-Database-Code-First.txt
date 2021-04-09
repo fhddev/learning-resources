@@ -1,0 +1,45 @@
+Core:
+Entities folder:
+	- EntityClass
+
+Infrastructure:
+Install:
+	- Microsoft.EntityFrameworkCore
+	- Design
+	- SqlServer
+	- Relational
+	- Tools	
+
+Create DataContext class and set the tables yuoui want to create.
+NOTE:
+	Tables are the entities in the Core/Entities.
+
+OnModelCreating set the entioties fields properties.
+
+Add some data on creations (Data Seed):
+	-  OnModelCreating add modelBuilder.Entity<Owner>().HasData(new Owner);
+	- Or, add class and put it in the Startup class file.
+
+##ConnectitonString##
+
+1- Open appsetings.json file and add connection string:
+"ConnectionStrings": {
+	"ConnectionName": "Data Source=SERVER_NAME; Initial catalog=DATABASE_NAME; Integrated Security=true;"
+}
+2- Startup class:
+	- Add constructor with (IConfiguration config) parameter.
+	- Add private readonly IConfiguratron field.
+
+3- ConfigurationSevices -> services.AddDbContext<DataContext>(options => {
+	options.UseSqlServer(configuration.GetConnectionString("CONNECTION_STRING"))
+});
+
+##Migration##
+
+Open Package Manager Console:
+	- dotnet ef << to make sure entity framework installed.
+	- dir 
+	- Go to the direcotry where the DataContext file is exist.
+	- dotnet ef migrations add InitialCreate -s (path\to\Web\Web.csproj)
+	- dotnet ef databse update -s (path\to\Web\Web.csproj)
+
